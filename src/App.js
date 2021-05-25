@@ -21,7 +21,7 @@ function App(props) {
   const [balance, setBalance] = React.useState(10000);
   const [showBalance, setShowBalance] = React.useState(true);
   const [coinData, setCoinData] = React.useState([]);
-
+  
   const componentDidMount = async () => {
     const response = await axios.get('https://api.coinpaprika.com/v1/coins');
     const coinIds = response.data.slice(0, COIN_COUNT).map( coin => coin.id);
@@ -45,7 +45,7 @@ function App(props) {
   
 
   useEffect(function () {
-    if (coinData.lenght === 0 ) {
+    if (coinData.length === 0 ) {
       // component did mount
       componentDidMount();
     } 
