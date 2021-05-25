@@ -8,15 +8,22 @@ const Section = styled.section `
     padding: 1.5rem 0 1.5rem 5rem;
 `;
 
-export default class AccountBalance extends Component {
-    render() {
-        return (
-            <Section className="balance">
-                <strong>Balance = $</strong> {this.props.amount}
-            </Section>
-        );
+export default function AccountBalance(props) {
+    const buttonText = props.showBalance ? 'Hide Balance' : 'Show Balance';
+    let content = null;
+    if (props.showBalance) {
+        content = <><strong>Balance = $</strong> {props.amount}</>
+
     }
+
+    return (
+        <Section className="balance">
+            {content}
+            <button onClick={props.handleBalanceVisibilityChange}>{buttonText}</button>
+        </Section>
+    );
 }
+
 
 AccountBalance.propTypes = {
     amount: propTypes.number.isRequired
