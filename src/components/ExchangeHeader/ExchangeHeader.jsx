@@ -3,13 +3,14 @@ import logo from './logo.svg';
 import styled from 'styled-components';
 
 const Img = styled.img `
-    height: 5rem;
+    height: 8rem;
     pointer-events: none;
 `;
 
 const Header = styled.header`
     background-color: #292a2c;
-    min-height: 20vh;
+    min-height: 10vh;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -19,7 +20,10 @@ const Header = styled.header`
 `;
 
 const H1 = styled.h1 `
-    font-size: 4rem;
+    font-size: 3rem;
+    line-height: 8rem;
+    font-weigth: bold;
+    min-width: 300px;
 `;
 
 
