@@ -20,6 +20,8 @@ const COIN_COUNT = 10;
 
 const formatPrice = price => parseFloat(Number(price).toFixed(4));
 
+
+
 function App(props) {
   
   const [balance, setBalance] = React.useState(10000);
@@ -27,9 +29,13 @@ function App(props) {
   const [coinData, setCoinData] = React.useState([]);
   
   const componentDidMount = async () => {
-    const response = await axios.get('https://api.coinpaprika.com/v1/coins');
+    console.log("before reaching API");
+    //const response = await axios.get('https://api.coinpaprika.com/v1/coins');
+    const response = await axios.get('/coins');
+    console.log(response);
     const coinIds = response.data.slice(0, COIN_COUNT).map( coin => coin.id);
-    const tickerUrl = 'https://api.coinpaprika.com/v1/tickers/';
+    //const tickerUrl = 'https://api.coinpaprika.com/v1/tickers/';
+    const tickerUrl = '/tickers/';
     const promises = coinIds.map(id => axios.get(tickerUrl + id));
     const coinData = await Promise.all(promises);
     const coinPriceData = coinData.map(function(response) {
@@ -78,7 +84,8 @@ function App(props) {
   }
 
   const handleRefresh = async (valueChangeId) => {
-    const tickerUrl = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`;
+    //const tickerUrl = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`;
+    const tickerUrl = `/tickers/${valueChangeId}`;
     const response = await axios.get(tickerUrl);
     
     const newPrice = formatPrice(response.data.quotes.USD.price);
